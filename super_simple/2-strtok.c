@@ -3,7 +3,7 @@
 int main(int ac, char **av)
 {
 	char *line;
-	size_t n = 0;
+	size_t n = 0, i = 0;
 	char *next;
 
 	(void)ac;
@@ -15,8 +15,10 @@ int main(int ac, char **av)
 
 	while (next != NULL)
 	{
-		printf("%s\n", next);
+		printf("%s", next);
 		next = strtok(NULL, " ");
+		if (next != NULL)
+			printf("\n");
 	}
 
 	free(line);
