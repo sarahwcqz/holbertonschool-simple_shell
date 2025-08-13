@@ -6,10 +6,12 @@ int main(void)
 	pid_t id;
 	char *buff = NULL, *argv[2];
 	size_t n = 0;
+	extern char **environ;
 
 	printf("$ ");
 
 	getline(&buff, &n, stdin);
+	buff[strcspn(buff, "\n")] = '\0';
 	printf("getline ok\n");
 
 	id = fork();
@@ -25,7 +27,11 @@ int main(void)
 		printf("C on a fork trql dans child\n");
 		argv[0] = buff;
 		argv[1] = NULL;
-		execve(buff, argv, NULL);
+		printf("argv0 = %s\n", argv[0]);
+		printf("argv1 = %s\n", argv[1]);
+		printf("buff = %s\n", buff);
+		execve(buff, argv, environ);
+		perror("execve");
 		printf("C on exe oklm\n");
 	}
 
