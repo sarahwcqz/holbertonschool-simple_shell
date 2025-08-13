@@ -9,7 +9,7 @@
 int main(int ac, char **av)
 {
 	char *line;
-	size_t n = 0;
+	size_t n = 0, i = 0;
 	char *next;
 
 	(void)ac;

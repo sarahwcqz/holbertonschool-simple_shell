@@ -8,5 +8,6 @@
 #include <string.h>
 #include <unistd.h>
 
+extern char **environ;
 
 #endif
