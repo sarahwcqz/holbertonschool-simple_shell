@@ -6,11 +6,12 @@ int main(int argc, char *argv[])
 	{	/* -------declaration------- */
 		pid_t id;
 		char *buff = NULL, *next;
-		int status, truc;
-
+		int status;
 		size_t i = 0, n = 0;
 		(void)argc;
+
 		printf("$ ");
+
 		if (getline(&buff, &n, stdin) == -1)
 		{
 			free(buff);
@@ -24,6 +25,7 @@ int main(int argc, char *argv[])
 			i++;
 			next = strtok(NULL, " \t\n");
 		}
+		argv[i] = NULL;
 		id = fork();
 		if (id == -1)
 		{
@@ -39,8 +41,7 @@ int main(int argc, char *argv[])
 		/* ----------si parent --------- */
 		else
 		{
-			truc = waitpid(id, &status, 0);
-			if (truc == -1)
+			if ((waitpid(id, &status, 0)) == -1)
 			{
 				perror("waitpid");
 				free(buff);

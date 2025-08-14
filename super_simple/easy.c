@@ -1,6 +1,6 @@
 #include "header.h"
 
-int main(void)
+int main()
 {
 	/* -------declaration------- */
 	pid_t id;
