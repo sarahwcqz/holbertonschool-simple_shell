@@ -11,6 +11,7 @@
 
 extern char **environ;
 int print_path(void);
+char **setup(char *argv[], char *buff);
 
 /**
  * struct directory - directory from PATH

@@ -1,31 +1,22 @@
 #include "header.h"
 
+/**
+ * main - entry point
+ * @argc: number of arguments
+ * @argv: arguments given by user
+ * Return: always 0.
+ */
 int main(int argc, char *argv[])
 {
 	while (1)
-	{	/* -------declaration------- */
+	{
 		pid_t id;
-		char *buff = NULL, *next;
 		int status;
-		size_t i = 0, n = 0;
+		char *buff = NULL;
 		(void)argc;
 
-		printf("$ ");
+		setup(argv, buff);
 
-		if (getline(&buff, &n, stdin) == -1)
-		{
-			free(buff);
-			return (0);
-		}
-
-		next = strtok(buff, " \t\n");
-		while (next != NULL)
-		{
-			argv[i] = next;
-			i++;
-			next = strtok(NULL, " \t\n");
-		}
-		argv[i] = NULL;
 		id = fork();
 		if (id == -1)
 		{
@@ -33,12 +24,10 @@ int main(int argc, char *argv[])
 			free(buff);
 			return (-1);
 		}
-		/* --------- si on est dans le child ------ */
 		if (id == 0)
 		{
 			execve(argv[0], argv, environ);
 		}
-		/* ----------si parent --------- */
 		else
 		{
 			if ((waitpid(id, &status, 0)) == -1)
