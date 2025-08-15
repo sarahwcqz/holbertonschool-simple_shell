@@ -19,6 +19,12 @@ char **setup(char *argv[], char **buff)
 			return (NULL);
 		}
 		next = strtok(*buff, " \t\n");
+		if (next == NULL)
+		{
+			argv[0] = NULL;
+			return (argv);
+		}
+
 		while (next != NULL)
 		{
 			argv[i] = next;
