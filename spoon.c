@@ -1,4 +1,4 @@
-#include "header.h"
+#include "simple_shell.h"
 
 /**
  * _fork - launches a fork
