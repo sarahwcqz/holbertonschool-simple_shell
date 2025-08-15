@@ -19,10 +19,10 @@ int main(int argc, char *argv[], char **env)
 		(void)env;
 
 /* ----------------------------prompt and stuff -----------------*/
-		argv = setup(argv, buff);
-		if (argv == NULL)								/* alors en vrai si on ne met pas de message d'adieu on gagne */
-		{												/* 3 lignes, si besoin on peut les enlever mais je trouvais ca rigolo d'en mettre un*/
-			printf("bye bruh\n");
+		argv = setup(argv, &buff);
+		if (checkarg(argv) == 0)
+		{
+			free(buff);
 			return (0);
 		}
 
