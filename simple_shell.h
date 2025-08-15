@@ -10,7 +10,8 @@
 #include <unistd.h>
 
 extern char **environ;
-char **setup(char *argv[], char *buff);
+char **setup(char *argv[], char **buff);
 int _fork(int id, char **argv);
+int checkarg(char **argv);
 
 #endif
