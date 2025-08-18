@@ -16,7 +16,7 @@ char **setup(char *argv[], char **buff)
 
 	if (getline(buff, &n, stdin) == -1)
 	{
-		free(buff);
+		/*free(*buff);*/
 		return (NULL);
 	}
 	next = strtok(*buff, " \t\n");
@@ -33,6 +33,6 @@ char **setup(char *argv[], char **buff)
 	}
 	argv[i] = NULL;
 
-	free(next);
+
 	return (argv);
 }

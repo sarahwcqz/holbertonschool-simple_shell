@@ -9,6 +9,9 @@ int checkarg(char **argv)
 			return (0);
 		}
 
+		if (argv[0] == NULL)
+			return (2);
+
 		if (strcmp(*argv, "exit") == 0)
 		{
 			printf("exit msg\n");
@@ -20,9 +23,6 @@ int checkarg(char **argv)
 			pr_env();
 			return (2);
 		}
-
-		if (argv[0] == NULL)
-			return (2);
 
 		return (1);
 }
