@@ -5,6 +5,10 @@
  * @id: used to communicate with the fork
  * @argv: argument passed by user
  * Return: id of child
+ *
+ * Description :
+ * launches a fork process, tells to the parent process to wait for the child
+ * process to finish, and to the child process to execute a command.
  */
 int _fork(int id, char **argv)
 {
@@ -18,7 +22,11 @@ int _fork(int id, char **argv)
 	}
 	if (id == 0)
 	{
-		execve(argv[0], argv, environ);
+		if (execve(argv[0], argv, environ) == -1)
+		{
+			fprintf(stderr, "hsh: %s: not found\n", argv[0]);
+			exit(EXIT_FAILURE);
+		}
 	}
 	else
 	{
