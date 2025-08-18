@@ -4,20 +4,17 @@
  * main - entry point
  * @argc: number of arguments
  * @argv: arguments given by user
- * @env: environment given as param
  * Return: always 0.
  */
-int main(int argc, char *argv[], char **env)
+int main(int argc, char *argv[])
 {
 	while (1)
 	{
 /* -------------------------- declaration ----------------------*/
 		pid_t id = 0;
-		int status, ret_arg;
+		int /*status*/ret_arg;
 		char *buff = NULL;
 		(void)argc;
-		(void)env;
-
 /* ----------------------------prompt and stuff -----------------*/
 		argv = setup(argv, &buff);
 		ret_arg = checkarg(argv);
@@ -31,34 +28,8 @@ int main(int argc, char *argv[], char **env)
 			free(buff);
 			continue;
 		}
-
-
-/*  -------------------- on fork -------------------------- */
-		id = fork();
-		if (id == -1)
-		{
-			perror("fork");
-			free(buff);
-			return (-1);
-		}
-		/* --------- si on est dans le child ------ */
-		if (id == 0)
-		{
-			if (execve(argv[0], argv, environ) == -1)
-				printf("message d'erreur a definir, enter another cmd\n");
-
-		}
-		/* ----------si parent --------- */
-		else
-		{
-			if ((waitpid(id, &status, 0)) == -1)
-			{
-				perror("waitpid");
-				free(buff);
-				return (-1);
-			}
-			free(buff);
-		}
+		id = _fork(id, argv);
+		free(buff);
 	}
 	return (0);
 }

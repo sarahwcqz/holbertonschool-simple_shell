@@ -14,24 +14,25 @@ char **setup(char *argv[], char **buff)
 	printf("prompt\n");
 	printf("-> ");
 
-		if (getline(buff, &n, stdin) == -1)
-		{
-			return (NULL);
-		}
-		next = strtok(*buff, " \t\n");
-		if (next == NULL)
-		{
-			argv[0] = NULL;
-			return (argv);
-		}
+	if (getline(buff, &n, stdin) == -1)
+	{
+		free(buff);
+		return (NULL);
+	}
+	next = strtok(*buff, " \t\n");
+	if (next == NULL)
+	{
+		argv[0] = NULL;
+		return (argv);
+	}
+	while (next != NULL)
+	{
+		argv[i] = next;
+		i++;
+		next = strtok(NULL, " \t\n");
+	}
+	argv[i] = NULL;
 
-		while (next != NULL)
-		{
-			argv[i] = next;
-			i++;
-			next = strtok(NULL, " \t\n");
-		}
-		argv[i] = NULL;
-
+	free(next);
 	return (argv);
 }

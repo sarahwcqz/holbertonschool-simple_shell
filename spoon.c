@@ -28,5 +28,5 @@ int _fork(int id, char **argv)
 			return (-1);
 		}
 	}
-	return (id);
+	return (0);
 }
