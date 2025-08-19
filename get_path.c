@@ -1,34 +1,53 @@
 #include "simple_shell.h"
 
 /**
- * get_path - 
- * 
- * Return:	the path to the exe of the command passed to the main,
- *			NULL if not found.
+ * get_dir - finds directory in which
+ * passed command has been found
+ * @argv: arguments passed by user
+ * Return: pointer to correct path
  */
-char *get_path()
+char *get_dir(char **argv)
 {
 	const char *name = "PATH";
-	char *env_p = getenv(name);
-	char *token = NULL, *temp, *head;
+	char *chemin, *env_p, *token;
 
+	size_t length = 0;
+
+	env_p = _getenv(name);
 	token = strtok(env_p, ":");
 
 	while (token != NULL)
 	{
-		/* creation de la linked list ici ?*/
+		length = strlen(token) + strlen(argv[0]) + 2;
+		chemin = malloc(sizeof(char) * length);
+		if (chemin == NULL)
+			return (NULL);
+		sprintf(chemin, "%s", token);
+
+		if (access(chemin, F_OK) == 0)
+		{
+			return (chemin);
+		}
 		token = strtok(NULL, ":");
 	}
-
-	while (temp != NULL)
-	{
-		if (temp->value == argv)
-		{
-			return (temp->value);
-		}
-		temp = temp->next;
-	}
-
 	return (NULL);
+}
 
+/**
+ * get_path - adds our command at the end
+ * @argv: argument containing cmd
+ * Return: pointer to full path.
+ */
+char *get_path(char **argv)
+{
+	char *cmd_path, *end_note;
+
+	cmd_path = get_dir(argv);
+	if (cmd_path == NULL)
+		return (NULL);
+
+	end_note = argv[0];
+
+	sprintf(cmd_path + strlen(cmd_path), "/%s", end_note);
+	return (cmd_path);
 }
