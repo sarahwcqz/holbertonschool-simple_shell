@@ -1,24 +1,22 @@
 #include "simple_shell.h"
 
 /**
- * setup - makes our shell pretty
+ * setup - reads the line from the stdin and tokenizes it
  * @argv: arguments given by user
  * @buff: where getline stores argv
- * Return: pointer to argument line
+ * Return: pointer to tokenized argument line
  */
 char **setup(char *argv[], char **buff)
 {
 	char *next;
-	size_t i = 0, n = 0;
+	size_t index = 0, taille_buff = 0;
 
-	printf("prompt\n");
+
 	printf("-> ");
 
-	if (getline(buff, &n, stdin) == -1)
-	{
-		/*free(*buff);*/
+	if (getline(buff, &taille_buff, stdin) == -1)
 		return (NULL);
-	}
+
 	next = strtok(*buff, " \t\n");
 	if (next == NULL)
 	{
@@ -27,12 +25,11 @@ char **setup(char *argv[], char **buff)
 	}
 	while (next != NULL)
 	{
-		argv[i] = next;
-		i++;
+		argv[index] = next;
+		index++;
 		next = strtok(NULL, " \t\n");
 	}
-	argv[i] = NULL;
-
+	argv[index] = NULL;
 
 	return (argv);
 }
