@@ -15,13 +15,15 @@
  */
 int main(int argc, char *argv[])
 {
-	printf("prompt\n");
+	char *prgm_name = strdup(argv[0]);
+
+	printf("prompt one time\n");
 	while (1)
 	{
 /* -------------------------- declaration ----------------------*/
 		pid_t id = 0;
 		int ret_arg;
-		char *buff = NULL, *prgm_name = argv[0];
+		char *buff = NULL;
 		(void)argc;
 /* ----------------------------prompt and stuff -----------------*/
 		argv = setup(argv, &buff);
@@ -36,10 +38,11 @@ int main(int argc, char *argv[])
 			free(buff);
 			continue;
 		}
+		if (ret_arg == 1)
+			argv = get_path(argv);
 
 		id = _fork(id, argv, prgm_name);
-	/* id va etre ecrase par fork, vraiment utile ce id ?*/
-	/* gestion d'erreur si fork echoue ?*/
+
 		free(buff);
 	}
 	return (0);

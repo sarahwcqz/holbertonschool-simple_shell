@@ -4,6 +4,7 @@
  * _fork - launches a fork
  * @id: used to communicate with the fork
  * @argv: argument passed by user
+ * @prgm_name: the first argument passed to main function <=> name of the prgm
  * Return: id of child
  *
  * Description :

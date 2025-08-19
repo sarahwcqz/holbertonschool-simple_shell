@@ -11,7 +11,7 @@ char **setup(char *argv[], char **buff)
 	char *next;
 	size_t index = 0, taille_buff = 0;
 
-
+	printf("prompt everytime\n");
 	printf("-> ");
 
 	if (getline(buff, &taille_buff, stdin) == -1)

@@ -32,8 +32,8 @@ int checkarg(char **argv)
 				return (2);
 			}
 
-			/* else
-				argv = get_path(*argv);*/
+			else
+				return (1);
 		}
 		return (1);
 }
