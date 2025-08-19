@@ -33,7 +33,7 @@ int checkarg(char **argv)
 			}
 
 			/* else
-			 fonction pour aller chercher dans le PATH */
+				argv = get_path(*argv);*/
 		}
 		return (1);
 }

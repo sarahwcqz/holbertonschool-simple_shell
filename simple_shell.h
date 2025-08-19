@@ -12,7 +12,7 @@
 extern char **environ;
 
 char **setup(char *argv[], char **buff);
-int _fork(int id, char **argv);
+int _fork(int id, char **argv, char *prgm_name);
 int checkarg(char **argv);
 void pr_env(void);
 

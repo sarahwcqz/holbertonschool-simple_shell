@@ -15,12 +15,13 @@
  */
 int main(int argc, char *argv[])
 {
+	printf("prompt\n");
 	while (1)
 	{
 /* -------------------------- declaration ----------------------*/
 		pid_t id = 0;
 		int ret_arg;
-		char *buff = NULL;
+		char *buff = NULL, *prgm_name = argv[0];
 		(void)argc;
 /* ----------------------------prompt and stuff -----------------*/
 		argv = setup(argv, &buff);
@@ -35,7 +36,8 @@ int main(int argc, char *argv[])
 			free(buff);
 			continue;
 		}
-		id = _fork(id, argv);
+
+		id = _fork(id, argv, prgm_name);
 	/* id va etre ecrase par fork, vraiment utile ce id ?*/
 	/* gestion d'erreur si fork echoue ?*/
 		free(buff);
