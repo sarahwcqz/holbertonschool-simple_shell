@@ -38,8 +38,8 @@ int main(int argc, char *argv[])
 			free(buff);
 			continue;
 		}
-		if (ret_arg == 1)
-			argv = get_path(argv);
+		if (ret_arg == 3)
+			*argv = get_path(argv);
 
 		id = _fork(id, argv, prgm_name);
 

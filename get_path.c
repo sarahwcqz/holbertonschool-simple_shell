@@ -24,7 +24,8 @@ char *get_dir(char **argv)
 			return (NULL);
 		sprintf(chemin, "%s", token);
 
-		if (access(chemin, F_OK) == 0)
+		if ((access(chemin, F_OK) == 0) &&
+		strncmp(chemin, "/home/sarah/.vscode", 19) != 0)
 		{
 			return (chemin);
 		}
