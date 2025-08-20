@@ -1,12 +1,12 @@
 #include "simple_shell.h"
 
 /**
- * get_dir - finds directory in which
+ * get_path - finds directory in which
  * passed command has been found
  * @argv: arguments passed by user
  * Return: pointer to correct path
  */
-char *get_dir(char **argv)
+char *get_path(char **argv)
 {
 	const char *name = "PATH";
 	char *chemin, *env_p, *token, *cp_env_p;

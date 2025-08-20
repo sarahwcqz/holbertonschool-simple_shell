@@ -8,27 +8,29 @@
  */
 char **setup(char *argv[], char **buff)
 {
-	char *next;
-	size_t index = 0, taille_buff = 0;
+	size_t index = 0, taille_buff = 0, max_arg = 64;
+	char *next, **cmd_line = NULL;
+	(void)argv;
 
 	printf("-> ");
 
 	if (getline(buff, &taille_buff, stdin) == -1)
 		return (NULL);
 
+	cmd_line = malloc(sizeof(char *) * max_arg);
 	next = strtok(*buff, " \t\n");
 	if (next == NULL)
 	{
-		argv[0] = NULL;
-		return (argv);
+		cmd_line[0] = NULL;
+		return (cmd_line);
 	}
 	while (next != NULL)
 	{
-		argv[index] = next;
+		cmd_line[index] = next;
 		index++;
 		next = strtok(NULL, " \t\n");
 	}
-	argv[index] = NULL;
+	cmd_line[index] = NULL;
 
-	return (argv);
+	return (cmd_line);
 }

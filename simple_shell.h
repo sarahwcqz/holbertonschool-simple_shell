@@ -16,7 +16,6 @@ int _fork(int id, char **argv, char *prgm_name);
 int checkarg(char **argv);
 void pr_env(void);
 char *get_path(char **argv);
-char *get_dir(char **argv);
 char *_getenv(const char *name);
 
 #endif
