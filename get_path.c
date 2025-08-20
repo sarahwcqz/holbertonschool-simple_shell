@@ -9,46 +9,28 @@
 char *get_dir(char **argv)
 {
 	const char *name = "PATH";
-	char *chemin, *env_p, *token;
-
-	size_t length = 0;
+	char *chemin, *env_p, *token, *cp_env_p;
+	size_t length;
 
 	env_p = _getenv(name);
-	token = strtok(env_p, ":");
+	cp_env_p = strdup(env_p);
+	token = strtok(cp_env_p, ":");
 
 	while (token != NULL)
 	{
 		length = strlen(token) + strlen(argv[0]) + 2;
-		chemin = malloc(sizeof(char) * length);
+		chemin = malloc(length);
 		if (chemin == NULL)
 			return (NULL);
-		sprintf(chemin, "%s", token);
 
-		if ((access(chemin, F_OK) == 0) &&
-		strncmp(chemin, "/home/sarah/.vscode", 19) != 0)
+		sprintf(chemin, "%s/%s", token, argv[0]);
+
+		if (access(chemin, X_OK) == 0)
 		{
 			return (chemin);
 		}
+		free(chemin);
 		token = strtok(NULL, ":");
 	}
 	return (NULL);
-}
-
-/**
- * get_path - adds our command at the end
- * @argv: argument containing cmd
- * Return: pointer to full path.
- */
-char *get_path(char **argv)
-{
-	char *cmd_path, *end_note;
-
-	cmd_path = get_dir(argv);
-	if (cmd_path == NULL)
-		return (NULL);
-
-	end_note = argv[0];
-
-	sprintf(cmd_path + strlen(cmd_path), "/%s", end_note);
-	return (cmd_path);
 }
