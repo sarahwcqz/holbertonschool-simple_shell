@@ -2,4 +2,5 @@
 super_simple/
 shell
 header.h
+path_stat.c
 get_path2.c
