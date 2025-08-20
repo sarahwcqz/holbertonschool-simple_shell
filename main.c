@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 			continue;
 		}
 		if (ret_arg == 3)
-			*argv = get_path(argv);
+			*argv = get_dir(argv);
 
 		id = _fork(id, argv, prgm_name);
 
