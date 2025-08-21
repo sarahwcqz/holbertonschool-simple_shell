@@ -8,9 +8,11 @@
  */
 int main (int argc, char *argv[])
 {
-	char *next = NULL, *cmd_line[128]; char *prgm_name = strdup(argv[0]);
+	char *next = NULL, chemin[1024], *cmd_line[128]; char *prgm_name = strdup(argv[0]);
 
-	printf("Hi there!\n");
+	if (isatty(STDIN_FILENO))
+		printf("Hi there!\n");
+
 	while (1)
 	{
 		pid_t id = 0;
@@ -19,7 +21,8 @@ int main (int argc, char *argv[])
 		size_t index = 0, taille_buff = 0;
 
 		(void)argc;
-		printf("-> ");
+		if (isatty(STDIN_FILENO))
+			printf("-> ");
 
 		if (getline(&buff, &taille_buff, stdin) == -1)
 			return (0);
@@ -50,7 +53,7 @@ int main (int argc, char *argv[])
 			continue;
 		}
 		if (ret_arg == 3)
-			argv[0] = get_path(argv);
+			argv[0] = get_path(argv, chemin);
 
 		id = _fork(id, argv, prgm_name);
 		if (id == -1)
