@@ -55,8 +55,9 @@ int main(int argc, char *argv[])
 			free(prgm_name);
 			return (-1);
 		}
-		free(buff);
 		free(cmd_line);
+		free(buff);
 	}
+	free(prgm_name);
 	return (0);
 }
