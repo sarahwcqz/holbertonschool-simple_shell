@@ -23,32 +23,39 @@ int main(int argc, char *argv[])
 /* -------------------------- declaration ----------------------*/
 		pid_t id = 0;
 		int ret_arg;
-		char *buff = NULL;
+		char **cmd_line = NULL, *buff = NULL;
 		(void)argc;
 /* ----------------------------prompt and stuff -----------------*/
+
 		argv = setup(argv, &buff);
 		ret_arg = checkarg(argv);
 		if (ret_arg == 0)
 		{
 			free(buff);
+			free(cmd_line);
+			free(prgm_name);
 			return (0);
 		}
 		if (ret_arg == 2)
 		{
 			free(buff);
+			free(cmd_line);
 			continue;
 		}
 		if (ret_arg == 3)
-			argv[0] = get_dir(argv);
+			argv[0] = get_path(argv);
 
 		id = _fork(id, argv, prgm_name);
 		if (id == -1)
 		{
 			perror("_fork");
+			free(buff);
+			free(cmd_line);
+			free(prgm_name);
 			return (-1);
 		}
-
 		free(buff);
+		free(cmd_line);
 	}
 	return (0);
 }
