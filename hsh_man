@@ -1,0 +1,68 @@
+.TH Shell simple
+.SH NAME
+hsh
+
+
+.SH SYNOPSIS
+
+#include "simple_shell.h"
+.br
+char **setup(char *argv[], char **buff);
+.br
+int _fork(int id, char **argv, char *prgm_name);
+.br
+int checkarg(char **argv);
+.br
+void pr_env(void);
+.br
+char *get_path(char **argv);
+.b
+char *_getenv(const char *name);
+.br
+
+.SH DESCRIPTION
+hsh is a simple Unix shell implementation written in C. It supports basic command execution, environment variable handling, and built-in commands such as 'exit' and 'env'.
+
+
+.SH Built-ins
+
+.TP
+exit
+exits the shell
+
+.TP
+env
+prints the environment
+
+.SH EXAMPLES
+
+./hsh
+.br
+prompt
+.br
+-> ls -l
+.br
+-rw-r--r-- 1 sarah sarah   455 Aug 21 09:31 _getenv.c
+.br
+-rw-r--r-- 1 sarah sarah    87 Aug 21 10:04 authors
+.br
+-rw-r--r-- 1 sarah sarah   697 Aug 21 11:01 checkarg.c
+.br
+-> exit
+.br
+bye bruh!
+.br
+~/holbertonschool-simple_shell$
+
+.SH AUTHOR
+Sarah Wacquiez & Priam Demailly
+
+.SH BUGS
+At the moment, there are some memory leaks that you can detect using Valgrind.
+.br
+We're actively working on the issue, but to be honest, we're a bit stuck and quite burnt out.
+.br
+So please be patient—we really need a holiday.
+
+.SH SEE ALSO
+fork, print_env, strncmp, strlen, isatty, printf, sprintf, strdup, strtok, malloc, access, free, execve, waitpid, exit, perror
