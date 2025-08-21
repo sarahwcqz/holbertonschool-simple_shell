@@ -23,11 +23,11 @@ int main(int argc, char *argv[])
 /* -------------------------- declaration ----------------------*/
 		pid_t id = 0;
 		int ret_arg;
-		char **cmd_line, *buff = NULL;
+		char **cmd_line = NULL, *buff = NULL;
 		(void)argc;
 /* ----------------------------prompt and stuff -----------------*/
 
-		cmd_line = setup(argv, &buff);
+		argv = setup(argv, &buff);
 		ret_arg = checkarg(argv);
 		if (ret_arg == 0)
 		{
