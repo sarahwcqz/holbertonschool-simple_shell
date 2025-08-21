@@ -5,57 +5,65 @@
  * @argc: number of arguments
  * @argv: arguments given by user
  * Return: 0 on normal exit.
- *
- * Description :
- * This minimal shell runs in an infinite loop, displaying a prompt to the
- * user, reading a command line, tokenizing it into arguments, and executing
- * the corresponding command using fork + execve. It handles built-in commands
- * like "exit" and "env", ignores empty lines, and properly frees memory at
- * each iteration.
  */
-int main(int argc, char *argv[])
+int main (int argc, char *argv[])
 {
-	char *prgm_name = strdup(argv[0]);
+	char *next = NULL, chemin[1024], *cmd_line[128]; char *prgm_name = strdup(argv[0]);
 
-	printf("prompt one time\n");
+	if (isatty(STDIN_FILENO))
+		printf("Hi there!\n");
+
 	while (1)
 	{
-/* -------------------------- declaration ----------------------*/
 		pid_t id = 0;
-		int ret_arg;
-		char **cmd_line = NULL, *buff = NULL;
-		(void)argc;
-/* ----------------------------prompt and stuff -----------------*/
+		int ret_arg = 0;
+		char *buff = NULL;
+		size_t index = 0, taille_buff = 0;
 
-		argv = setup(argv, &buff);
+		(void)argc;
+		if (isatty(STDIN_FILENO))
+			printf("-> ");
+
+		if (getline(&buff, &taille_buff, stdin) == -1)
+			return (0);
+
+		next = strtok(buff, " \t\n");
+		if (next == NULL)
+		{
+			cmd_line[0] = NULL;
+		}
+		while (next != NULL)
+		{
+			cmd_line[index] = next;
+			index++;
+			next = strtok(NULL, " \t\n");
+		}
+		cmd_line[index] = NULL;
+		argv = cmd_line;
 		ret_arg = checkarg(argv);
 		if (ret_arg == 0)
 		{
 			free(buff);
-			free(cmd_line);
 			free(prgm_name);
 			return (0);
 		}
 		if (ret_arg == 2)
 		{
 			free(buff);
-			free(cmd_line);
 			continue;
 		}
 		if (ret_arg == 3)
-			argv[0] = get_path(argv);
+			argv[0] = get_path(argv, chemin);
 
 		id = _fork(id, argv, prgm_name);
 		if (id == -1)
 		{
 			perror("_fork");
 			free(buff);
-			free(cmd_line);
 			free(prgm_name);
 			return (-1);
 		}
 		free(buff);
-		free(cmd_line);
 	}
 	return (0);
 }
