@@ -32,5 +32,5 @@ char *get_path(char **argv)
 		free(chemin);
 		token = strtok(NULL, ":");
 	}
-	return (NULL);
+	return (argv[0]);
 }

@@ -17,7 +17,8 @@ int main(int argc, char *argv[])
 {
 	char *prgm_name = strdup(argv[0]);
 
-	printf("prompt one time\n");
+	if (isatty(STDIN_FILENO))
+		printf("prompt one time\n");
 	while (1)
 	{
 /* -------------------------- declaration ----------------------*/

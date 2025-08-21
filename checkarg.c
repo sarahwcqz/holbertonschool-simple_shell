@@ -11,7 +11,8 @@ int checkarg(char **argv)
 {
 		if (argv == NULL)
 		{
-			printf("\nbye bruh\n");
+			if (isatty(STDIN_FILENO))
+				printf("\nbye bruh\n");
 			return (0);
 		}
 
