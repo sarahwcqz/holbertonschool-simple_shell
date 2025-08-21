@@ -27,10 +27,12 @@ char *get_path(char **argv)
 
 		if (access(chemin, X_OK) == 0)
 		{
+			free(cp_env_p);
 			return (chemin);
 		}
 		free(chemin);
 		token = strtok(NULL, ":");
 	}
+	free(cp_env_p);
 	return (argv[0]);
 }
