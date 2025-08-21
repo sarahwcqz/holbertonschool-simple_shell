@@ -9,7 +9,7 @@
 char **setup(char *argv[], char **buff)
 {
 	size_t index = 0, taille_buff = 0, max_arg = 64;
-	char *next, **cmd_line = NULL;
+	char *next, **cmd_line;
 	(void)argv;
 
 	printf("-> ");
