@@ -4,13 +4,13 @@
  * get_path - finds directory in which
  * passed command has been found
  * @argv: arguments passed by user
+ * @chemin: buffer to store path & command in
  * Return: pointer to correct path
  */
-char *get_path(char **argv)
+char *get_path(char **argv, char *chemin)
 {
 	const char *name = "PATH";
-	char *chemin, *env_p, *token, *cp_env_p;
-	size_t length;
+	char *env_p, *token, *cp_env_p;
 
 	env_p = _getenv(name);
 	cp_env_p = strdup(env_p);
@@ -18,11 +18,6 @@ char *get_path(char **argv)
 
 	while (token != NULL)
 	{
-		length = strlen(token) + strlen(argv[0]) + 2;
-		chemin = malloc(length);
-		if (chemin == NULL)
-			return (NULL);
-
 		sprintf(chemin, "%s/%s", token, argv[0]);
 
 		if (access(chemin, X_OK) == 0)
@@ -30,7 +25,6 @@ char *get_path(char **argv)
 			free(cp_env_p);
 			return (chemin);
 		}
-		free(chemin);
 		token = strtok(NULL, ":");
 	}
 	free(cp_env_p);
