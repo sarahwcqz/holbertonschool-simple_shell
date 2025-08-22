@@ -30,7 +30,7 @@ The man page can be invoked with the following command:<br/>
 
 ### Flowchart
 A picture is worth a thousand words (at least, we hope so).<br/>
-![Flowchart demonstrating our thinking process](~/holbertonschool-simple_shell/images/Flowchart-Simple_Shell.jpg)
+![Flowchart demonstrating our thinking process](./images/Flowchart-Simple_Shell.jpg)
 
 ## Uses and tests
 ### Compiling
@@ -38,8 +38,6 @@ Compile using following command :
 ```
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 ```
-While working on it, we compiled it using the following options:<br/>
-`gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh`<br/>
 These ensured we would catch all possible issues and that our shell would have good portability.<br/>
 
 ### Usage
@@ -59,7 +57,7 @@ AUTHORS _getenv.c checkarg.c get_path.c hsh images main.c pr_env.c simple_shell.
 This simple shell takes into account two built-ins: `exit` and `env`. Typing `exit` will close the shell, and `env` will print the contents of the environment variable.<br/>
 It can also be used for basic commands sur as `ls`, `cp`, `rm`, or `pwd`, the latter being both a built-in and a binary command.<br/>
 Here are some of them in action:<br/>
-![Screen capture of our shell's output with various commands](~/holbertonschool-simple_shell/images/hsh-cmd_test.png)
+![Screen capture of our shell's output with various commands](./images/hsh-cmd_test.png)
 As shown, there is no need to input the path to the desired commands' location, as `PATH` is handled.<br/>
 
 ## Possible improvements and known bugs
