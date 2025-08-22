@@ -17,7 +17,7 @@ The man page can be invoked with the following command:<br/>
 
 ### Flowchart
 A picture is worth a thousand words (at least, we hope so).<br/>
-![Flowchart demonstrating our thinking process](./images/Flowchart-Simple_Shell.jpg)
+![Flowchart demonstrating our thinking process](./images/flowchart-simple_shell.jpg)
 
 ### Structure of files
 + .gitignore                            //	file containing all the tests and executable files
@@ -58,7 +58,7 @@ This simple shell takes into account two built-ins: `exit` and `env`. Typing `ex
 It can also be used for basic commands sur as `ls`, `cp`, `rm`, or `pwd`, the latter being both a built-in and a binary command.<br/>
 Here are some of them in action:<br/>
 ![Screen capture of our shell's output with various commands](./images/hsh-cmd_test.png)
-As shown, there is no need to input the path to the desired commands' location, as `PATH` is handled.<br/>
+<br/>As shown, there is no need to input the path to the desired commands' location, as `PATH` is handled.<br/>
 
 ## Possible improvements and known bugs
 * The `cd` command has not been implemented at this date.
