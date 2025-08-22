@@ -1,9 +1,3 @@
-Compile using following command : 
-```c
-gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
-```
-
-
 ## Structure of files
 + .gitignore                            //	file containing all the tests and executable files
 + _gentenv.c               				//	function to get the value of the passed env variable
@@ -17,6 +11,51 @@ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 + simple_shell.h                        //	header containing all used fonctions and librairies
 + spoon.c								//	function to launches a fork process
 
+This minimal shell runs in an infinite loop, displaying a prompt `(->)` to the user as a signal to input a command line.<br/>
+It then parses the command, tokening it into arguments ready for execution.<br/> Should the user input nothing or any string of characters that doesn't match a known command, our shell will behave similarly to the standard shell, printing error messages or prompting again as appropriate.
+
+## Understanding our Shell
+### Man page
+The man page can be invoked with the following command:<br/>
+`man ./hsh_man`
+
+### Flowchart
+A picture is worth a thousand words (at least, we hope so).<br/>
+![Flowchart demonstrating our thinking process](~/holbertonschool-simple_shell/images/Flowchart-Simple_Shell.jpg)
+
+## Uses and tests
+### Compiling
+Compile using following command :
+```
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
+```
+While working on it, we compiled it using the following options:<br/>
+`gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh`<br/>
+These ensured we would catch all possible issues and that our shell would have good portability.<br/>
+
+### Usage
+Simply invoke it with `./hsh`, wait for the welcome message and prompt to show (it won't take long, we promise!) then type in your commands.<br/>
+Note that it works both interactively and not, like so:<br/>
+```
+User@Ubuntu:/$ ./hsh
+Hi there!
+-> ls
+AUTHORS _getenv.c checkarg.c get_path.c hsh images main.c pr_env.c simple_shell.h spoon.c
+-> exit
+See you next time!
+User@Ubuntu:/$ echo "/bin/ls" | ./hsh
+AUTHORS _getenv.c checkarg.c get_path.c hsh images main.c pr_env.c simple_shell.h spoon.c
+```
+### Functionalities
+This simple shell takes into account two built-ins: `exit` and `env`. Typing `exit` will close the shell, and `env` will print the contents of the environment variable.<br/>
+It can also be used for basic commands sur as `ls`, `cp`, `rm`, or `pwd`, the latter being both a built-in and a binary command.<br/>
+Here are some of them in action:<br/>
+![Screen capture of our shell's output with various commands](~/holbertonschool-simple_shell/images/hsh-cmd_test.png)
+As shown, there is no need to input the path to the desired commands' location, as `PATH` is handled.<br/>
+
+## Possible improvements and known bugs
+* The `cd` command has not been implemented at this date.
+* When using `ctrl^d` to close the shell, a memory leak can happen. We strongly recommend using `exit`.
 
 ## Authors
 Sarah Wacquiez
