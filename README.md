@@ -68,5 +68,7 @@ As shown, there is no need to input the path to the desired commands' location, 
 
 ## Authors
 Your most obliged and humble servants:
+<br/>
 The bad girl Sarah Wacquiez
+<br/>
 and the bad boy Priam Demailly
