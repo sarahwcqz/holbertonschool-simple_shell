@@ -1,3 +1,5 @@
+# Holberton School : Simple Shell
+
 This minimal shell runs in an infinite loop, displaying a prompt `(->)` to the user as a signal to input a command line.<br/>
 It then parses the command, tokening it into arguments ready for execution.<br/> Should the user input nothing or any string of characters that doesn't match a known command, our shell will behave similarly to the standard shell, printing error messages or prompting again as appropriate.
 
