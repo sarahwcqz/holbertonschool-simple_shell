@@ -25,7 +25,11 @@ int main (int argc, char *argv[])
 			printf("-> ");
 
 		if (getline(&buff, &taille_buff, stdin) == -1)
+		{
+			free(prgm_name);
+			free(buff);
 			return (0);
+		}
 
 		next = strtok(buff, " \t\n");
 		if (next == NULL)

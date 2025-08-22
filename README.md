@@ -14,6 +14,15 @@
 This minimal shell runs in an infinite loop, displaying a prompt `(->)` to the user as a signal to input a command line.<br/>
 It then parses the command, tokening it into arguments ready for execution.<br/> Should the user input nothing or any string of characters that doesn't match a known command, our shell will behave similarly to the standard shell, printing error messages or prompting again as appropriate.
 
+## The rules we followed
++ Edition was made on VS code.
++ We put a lot of effort to built a beautiful and fonctional README
++ To have a nice, readable and easily understandable code we followed the Betty coding style
++ To serve this purpose we separated as much as possible the different functions on different files
++ We used system calls only when needed
++ We fought the memory leaks with honor and tenacity, but unfortunetly we suffered huge losses on this battlefield
++ FYI : We wanted to had a nice and unique personnality to our shell but unfortunately all of our strenght where focused on defeeting our enemy, Sir Valgrind the Ruthless.
+
 ## Understanding our Shell
 ### Man page
 The man page can be invoked with the following command:<br/>
@@ -58,5 +67,6 @@ As shown, there is no need to input the path to the desired commands' location, 
 * When using `ctrl^d` to close the shell, a memory leak can happen. We strongly recommend using `exit`.
 
 ## Authors
-Sarah Wacquiez
-Priam Demailly
+Your most obliged and humble servants:
+The bad girl Sarah Wacquiez
+and the bad boy Priam Demailly
