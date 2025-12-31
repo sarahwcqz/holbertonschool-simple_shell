@@ -9,21 +9,27 @@
 int main (int argc, char *argv[])
 {
 	char *next = NULL, chemin[1024], *cmd_line[128]; char *prgm_name = strdup(argv[0]);
+	/* next : for strtok   chemin : chemin d'exe	cmd_line : tableau d'argmt	prgm_name : nom du prgm */
 
+	/* si mode interactif */
 	if (isatty(STDIN_FILENO))
 		printf("Hi there!\n");
 
+	/* boucle infinie */
 	while (1)
 	{
+		/* reinit des var */
 		pid_t id = 0;
 		int ret_arg = 0;
 		char *buff = NULL;
 		size_t index = 0, taille_buff = 0;
 
+		/* si mode interactif */
 		(void)argc;
 		if (isatty(STDIN_FILENO))
 			printf("-> ");
 
+		/* si EOF, exit */
 		if (getline(&buff, &taille_buff, stdin) == -1)
 		{
 			free(prgm_name);
@@ -31,6 +37,7 @@ int main (int argc, char *argv[])
 			return (0);
 		}
 
+		/* tokenisation */
 		next = strtok(buff, " \t\n");
 		if (next == NULL)
 		{
@@ -44,6 +51,8 @@ int main (int argc, char *argv[])
 		}
 		cmd_line[index] = NULL;
 		argv = cmd_line;
+
+
 		ret_arg = checkarg(argv);
 		if (ret_arg == 0)
 		{

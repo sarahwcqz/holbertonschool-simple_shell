@@ -22,7 +22,7 @@ int checkarg(char **argv)
 		{
 			if (strcmp(*argv, "exit") == 0)
 			{
-				printf("exit msg\n");
+				printf("Hope to see you soon!\n");
 				return (0);
 			}
 
